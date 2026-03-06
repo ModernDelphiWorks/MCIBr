@@ -35,12 +35,52 @@ Bem-vindo ao **Manual Definitivo do MCIBr**. Este documento foi elaborado para s
 
 ---
 
-## 1. Visão Geral e Arquitetura
+## 🏗 Arquitetura
 
-O MCIBr não é apenas uma calculadora; é um **motor de regras de negócio**. Ele foi desenhado para desacoplar a complexidade fiscal do restante da aplicação (ERP), garantindo que as regras fiscais sejam aplicadas de forma consistente e centralizada.
+O framework foi desenhado sobre três pilares fundamentais:
 
-### Conceitos Chave
-*   **Motor (`IImpostoMotor`):** O cérebro que orquestra os cálculos. Ele detém as configurações globais da operação (Interestadual, Consumidor Final, Tipo de Ambiente, etc.).
+```mermaid
+classDiagram
+    class IImpostoMotor {
+        +TipoOperacao
+        +Processar()
+    }
+    class INotaFiscal {
+        +TotalNF
+        +AddProduto()
+    }
+    class IEmitente {
+        +RegimeTributario
+        +UF
+    }
+    class IDestinatario {
+        +ContribuinteICMS
+        +ConsumidorFinal
+    }
+    class IProduto {
+        +Preco
+        +Quantidade
+    }
+    class IICMS {
+        +CST
+        +Aliquota
+    }
+    class IIBS {
+        +AliquotaUF
+        +AliquotaMUN
+    }
+
+    IImpostoMotor *-- INotaFiscal
+    INotaFiscal *-- IEmitente
+    INotaFiscal *-- IDestinatario
+    INotaFiscal o-- IProduto : 1..*
+    IProduto *-- IICMS
+    IProduto *-- IIBS
+    IProduto *-- IPIS_COFINS
+```
+
+### 1. O Motor (`IImpostoMotor`)
+O cérebro da operação. Define as regras globais do documento fiscal.
 *   **Nota Fiscal (`INotaFiscal`):** O contêiner de dados. Armazena totais, emitente e destinatário.
 *   **Emitente (`IEmitente`):** Define quem está vendendo. Fundamental para determinar o Regime Tributário (CRT - Simples Nacional vs Normal) e a UF de origem.
 *   **Destinatário (`IDestinatario`):** Define quem está comprando. Crítico para cálculos de DIFAL (Consumidor Final? Contribuinte?) e substituição tributária.
