@@ -93,9 +93,8 @@ O cérebro da operação. Define as regras globais do documento fiscal.
 
 Não há componentes visuais para instalar na paleta. O MCIBr é uma biblioteca de código (Library) focada em performance e compatibilidade.
 
-1.  **Clone o repositório:** `git clone https://github.com/isaquepsp/MCIBr.git`
-2.  **Library Path:** Adicione a pasta `Source` e todas as suas subpastas ao *Library Path* da sua IDE (Delphi ou Lazarus).
-3.  **Uses:** Em sua unit, adicione:
+1.  **Library Path:** Adicione a pasta `Source` e todas as suas subpastas ao *Library Path* da sua IDE (Delphi ou Lazarus).
+2.  **Uses:** Em sua unit, adicione:
     ```delphi
     uses mcibr.interfaces, mcibr.motor, mcibr.produto, mcibr.enum.cstcsosn, mcibr.enum.regime;
     ```
