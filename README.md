@@ -26,7 +26,6 @@ Bem-vindo ao **Manual Definitivo do MCIBr**. Este documento foi elaborado para s
     *   [5.2 FCP - Fundo de Combate à Pobreza](#52-fcp)
     *   [5.3 DIFAL e Partilha de ICMS](#53-difal-e-partilha-de-icms)
     *   [5.4 II - Imposto de Importação](#54-ii)
-    *   [5.5 CPP - Contribuição Previdenciária Patronal](#55-cpp)
     *   [5.6 CIDE](#56-cide)
     *   [5.7 Recursos Avançados (Devolução, Diferimento, Redução)](#57-recursos-avançados)
 6.  [Exemplo Prático Completo (Nota Fiscal)](#6-exemplo-prático-completo-nota-fiscal)
@@ -317,15 +316,6 @@ LProd.II.Base := 1000.00; // Valor Aduaneiro
 LProd.II.Aliquota := 60.00;
 // Calcula também IOF se necessário (via customização)
 ```
-
-### 5.5. CPP
-**Definição:** Contribuição Previdenciária Patronal. Calculada sobre o valor líquido do produto.
-
-```delphi
-LProd.CPP.Aliquota := 20.00;
-// Resultado: ValorLiquido * 20%
-```
-
 ### 5.6. CIDE
 **Definição:** Contribuição de Intervenção no Domínio Econômico. O framework possui a estrutura de classes (`mcibr.cide.pas`) preparada para implementação de cálculos específicos (Combustíveis, Remessas, etc.), permitindo extensão pelo desenvolvedor.
 
